@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var speed : int = 250 #pixels / second
+var speed : int = 200 #pixels / second
 var move : Vector2 = Vector2(0,0)
 var grid_pos : Vector2 = Vector2(0,0)
 var is_moveing : bool = false
@@ -32,7 +32,7 @@ func _process(delta):
 			$icon.frame = 0
 	
 		bob = 4
-		t += delta * 2
+		t += delta * 4
 	else:
 		bob = 2
 		t += delta

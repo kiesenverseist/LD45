@@ -2,8 +2,11 @@ extends KinematicBody2D
 
 var speed : int = 250 #pixels / second
 var move : Vector2 = Vector2(0,0)
-var grid_pos : Vector2 = Vector2(5,5)
+var grid_pos : Vector2 = Vector2(0,0)
 var is_moveing : bool = false
+
+var bob = 3
+var t = 0
 
 onready var level : NodePath = NodePath("../Level")
 
@@ -11,26 +14,37 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	if not is_moveing:
-		move.y = int(Input.is_action_pressed("move_down")) \
-				- int(Input.is_action_pressed("move_up"))
-		move.x = int(Input.is_action_pressed("move_left")) \
-				- int(Input.is_action_pressed("move_right"))
+	move.y = int(Input.is_action_pressed("move_down")) \
+			- int(Input.is_action_pressed("move_up"))
+	move.x = int(Input.is_action_pressed("move_left")) \
+			- int(Input.is_action_pressed("move_right"))
+	
+	if move.length() > 0:
+		if move.y > 0:
+			$icon.frame = 1
+		if move.y < 0:
+			$icon.frame = 2
+		if move.x > 0:
+			$icon.flip_h = false
+			$icon.frame = 0
+		if move.x < 0:
+			$icon.flip_h = true
+			$icon.frame = 0
+	
+		bob = 4
+		t += delta * 2
+	else:
+		bob = 2
+		t += delta
 		
-		if get_node_or_null(level):
-			if get_node(level).free_tile(grid_pos + move):
-				grid_pos += move
-		else: 
-			grid_pos += move
+#	z_index = -position.y
+	
+	$icon.position.y = bob * sin(t)
+	t += delta
+	if t >= PI: t = 0
 
 func _physics_process(delta):
-	var to_move = grid_pos * settings.GRID_SIZE - position
-	
-	if to_move.length() > speed * delta:
-		to_move = to_move.normalized() * speed
-		is_moveing = true
-		move_and_slide(to_move)
-	else:
-		position = grid_pos * settings.GRID_SIZE
-		is_moveing = false
-	
+	move = move.normalized()
+	var mov = Vector2(move.x, move.y * 2/3)
+	move_and_slide(mov * speed)
+

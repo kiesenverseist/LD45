@@ -26,7 +26,7 @@ settings="*res://settings.gd"
 [display]
 
 window/size/always_on_top=true
-window/per_pixel_transparency/enabled=true
+window/per_pixel_transparency/allowed=true
 window/stretch/aspect="expand"
 
 [importer_defaults]

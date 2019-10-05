@@ -14,6 +14,7 @@ scale = Vector2( 1.00211, 0.994362 )
 script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 293.381, 257.452 )
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource( 1 )

@@ -1,8 +1,14 @@
 extends Node2D
 
 func _ready():
-#	get_tree().get_root().set_transparent_background(true)
-	OS.window_maximized = true
+	while(true):
+		settings.window_exists = true
+		yield(get_tree().create_timer(2), "timeout")
+		settings.window_exists = false
+		yield(get_tree().create_timer(2), "timeout")
+		
 
 func _process(delta):
-	$Path2D/PathFollow2D.unit_offset += 0.01
+	$Path2D/PathFollow2D.unit_offset += delta/3
+
+

@@ -5,6 +5,8 @@ var move : Vector2 = Vector2(0,0)
 var grid_pos : Vector2 = Vector2(5,5)
 var is_moveing : bool = false
 
+onready var level : NodePath = NodePath("../Level")
+
 func _ready():
 	pass # Replace with function body.
 
@@ -15,7 +17,11 @@ func _process(delta):
 		move.x = int(Input.is_action_pressed("move_left")) \
 				- int(Input.is_action_pressed("move_right"))
 		
-		grid_pos += move
+		if get_node_or_null(level):
+			if get_node(level).free_tile(grid_pos + move):
+				grid_pos += move
+		else: 
+			grid_pos += move
 
 func _physics_process(delta):
 	var to_move = grid_pos * settings.GRID_SIZE - position

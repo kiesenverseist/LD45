@@ -1,9 +1,8 @@
 extends Node
 
-var window_exists : bool = true setget set_window_existance
-# settings singleton
-
 const GRID_SIZE = 64
+
+var window_exists : bool = true setget set_window_existance
 
 func set_window_existance(exists : bool) -> void:
 	OS.window_borderless = false

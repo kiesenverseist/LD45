@@ -8,10 +8,10 @@ func _ready():
 	$GUI/Messenger.add_message("UwU")
 	$GUI/Messenger.add_message("")
 	
-	yield(get_tree().create_timer(1), "timeout")
-	settings.level_exists = false
-	yield(get_tree().create_timer(1), "timeout")
-	settings.level_exists = true
+#	yield(get_tree().create_timer(1), "timeout")
+#	settings.level_exists = false
+#	yield(get_tree().create_timer(1), "timeout")
+#	settings.level_exists = true
 #	var l = level.instance()
 #	l.name = "Level"
 #	add_child(l)

@@ -34,6 +34,8 @@ func add_message(msg : String, auto_advance : bool = true) -> void:
 	emit_signal("message_added")
 
 func advance() -> void:
+	if waiting: return
+	
 	if message_queue.size() == 0:
 		waiting = true
 		yield(self, "message_added")

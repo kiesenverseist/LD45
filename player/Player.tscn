@@ -5,7 +5,7 @@
 [ext_resource path="res://player/up.png" type="Texture" id=3]
 [ext_resource path="res://player/down.png" type="Texture" id=4]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 8.92386
 height = 0.454071
 
@@ -17,13 +17,13 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 0.133333, 0.133333, 0.133333, 1, 0.301961, 0.301961, 0.301961, 0 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=5]
 emission_shape = 1
 emission_sphere_radius = 7.0
 flag_disable_z = true
@@ -37,7 +37,7 @@ linear_accel = -3.3
 angle_random = 1.0
 scale = 5.2
 scale_random = 0.47
-color_ramp = SubResource( 8 )
+color_ramp = SubResource( 4 )
 hue_variation_random = 0.22
 anim_speed = 128.0
 
@@ -46,7 +46,7 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.50941, 20.9812 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -62,4 +62,4 @@ amount = 30
 lifetime = 2.0
 local_coords = false
 draw_order = 1
-process_material = SubResource( 6 )
+process_material = SubResource( 5 )
